@@ -4,6 +4,7 @@ import { useState } from "react";
 import CyberIntro from "../components/CyberIntro";
 import ToolModal from "../components/ToolModal";
 import Donut from "../components/Donut";
+import AnimatedText from "../components/AnimatedText";
 
 export default function Cyber() {
   const [activeTool, setActiveTool] = useState(null);
@@ -95,12 +96,16 @@ export default function Cyber() {
           >
             <div className="w-10 h-[2px] bg-green-500 mb-6"></div>
 
-            <h1 className="text-4xl md:text-6xl font-bold">Cybersecurity</h1>
+            <AnimatedText
+              text="Cybersecurity"
+              className="text-4xl md:text-6xl font-bold"
+            />
 
-            <p className="mt-6 text-green-300/80">
-              Hands-on experience in network analysis, vulnerability assessment,
-              and exploitation workflows using real-world tools.
-            </p>
+            <AnimatedText
+              text="I work extensively with network analysis, vulnerability assessment, and exploitation workflows using real-world security tools.  My approach focuses on understanding systems at a deeper level—how they communicate, where they fail, and how those weaknesses can be identified and leveraged.
+"
+              className="mt-6 text-green-300/80"
+            />
           </motion.div>
 
           {/* Visual */}

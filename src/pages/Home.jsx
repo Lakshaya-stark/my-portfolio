@@ -5,6 +5,11 @@ import { themes } from "../data/theme";
 export default function Home() {
   const theme = themes.home;
   const navigate = useNavigate();
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div
@@ -22,19 +27,33 @@ export default function Home() {
           </div>
 
           <div className="hidden md:flex items-center gap-10 text-sm text-zinc-400">
-            {["About", "Projects", "Skills", "Contact"].map((item) => (
-              <a key={item} href="#" className="relative group">
+            {[
+              { label: "About", id: "about" },
+              { label: "Projects", id: "projects" },
+              { label: "Skills", id: "domains" },
+              { label: "Contact", id: "domains" }, // temp
+            ].map((item) => (
+              <button
+                key={item.label}
+                onClick={() => scrollToSection(item.id)}
+                className="relative group"
+              >
                 <span className="group-hover:text-[#d4af37] transition">
-                  {item}
+                  {item.label}
                 </span>
+
                 <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
+
                 <span className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-md bg-[#d4af37]/20 transition"></span>
-              </a>
+              </button>
             ))}
           </div>
         </nav>
         {/* HERO */}
-        <section className="flex flex-col md:flex-row items-center justify-between gap-16">
+        <section
+          id="home"
+          className="flex flex-col md:flex-row items-center justify-between gap-16"
+        >
           <motion.div
             className="max-w-xl"
             initial="hidden"
@@ -92,6 +111,7 @@ export default function Home() {
         </section>
         {/* ABOUT */}
         <motion.section
+          id="about"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -108,6 +128,7 @@ export default function Home() {
         {/* PROJECTS */}
 
         <motion.section
+          id="projects"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -167,6 +188,7 @@ export default function Home() {
 
         {/* Domain */}
         <motion.section
+          id="domains"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}

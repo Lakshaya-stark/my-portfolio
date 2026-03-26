@@ -37,7 +37,7 @@ export default function AnimatedText({ text, className = "" }) {
           }}
           transition={{
             duration: 0.6,
-            ease: [0.22, 1, 0.36, 1],
+            ease: [0.22, 2, 0.36, 1],
           }}
           className="inline-block mr-3"
         >

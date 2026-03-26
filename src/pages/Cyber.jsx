@@ -2,20 +2,76 @@ import { motion } from "framer-motion";
 import { themes } from "../data/theme";
 import { useState } from "react";
 import CyberIntro from "../components/CyberIntro";
-
-// export default function Cyber() {
-
-// 👉 After animation ends → show actual page
-//   return (
-//     <div className="min-h-screen bg-black text-green-400 flex items-center justify-center">
-//       <h1 className="text-4xl font-bold">Cybersecurity Page 🚀</h1>
-//     </div>
-//   );
-// }
+import ToolModal from "../components/ToolModal";
+import Donut from "../components/Donut";
 
 export default function Cyber() {
+  const [activeTool, setActiveTool] = useState(null);
   const theme = themes.cyber;
   const [showIntro, setShowIntro] = useState(true);
+
+  const tools = [
+    {
+      title: "Nmap",
+      description:
+        "Advanced network scanning tool used for host discovery, port scanning, service enumeration, and OS fingerprinting. Frequently used in reconnaissance and attack surface mapping.",
+    },
+    {
+      title: "Wireshark",
+      description:
+        "Packet analysis tool for deep inspection of network traffic. Used to analyze protocols, detect anomalies, and debug network-level issues in real time.",
+    },
+    {
+      title: "Metasploit",
+      description:
+        "Powerful exploitation framework used to develop, test, and execute exploits against vulnerable systems. Supports payload generation, post-exploitation, and automation.",
+    },
+    {
+      title: "Burp Suite",
+      description:
+        "Web security testing platform used for intercepting, modifying, and analyzing HTTP requests. Useful for identifying vulnerabilities like XSS, SQL injection, and auth flaws.",
+    },
+    {
+      title: "BeEF",
+      description:
+        "Browser Exploitation Framework used to assess client-side vulnerabilities. Enables control over hooked browsers for testing real-world attack scenarios.",
+    },
+    {
+      title: "Netcat",
+      description:
+        "Versatile networking utility used for port listening, banner grabbing, reverse shells, and manual interaction with services during testing.",
+    },
+    {
+      title: "Hydra",
+      description:
+        "Fast password cracking tool used for brute-force attacks against various protocols such as SSH, FTP, and HTTP authentication systems.",
+    },
+    {
+      title: "Aircrack-ng",
+      description:
+        "Wireless security auditing toolset used for capturing packets, analyzing Wi-Fi networks, and cracking weak encryption protocols like WEP/WPA.",
+    },
+    {
+      title: "John the Ripper",
+      description:
+        "Password cracking tool used for testing password strength and recovering weak credentials through dictionary and brute-force attacks.",
+    },
+    {
+      title: "Custom Python Tools",
+      description:
+        "Developed custom scripts for automation, scanning, and exploitation workflows including port scanners, brute-force tools, and packet analysis utilities.",
+    },
+    {
+      title: "Networking",
+      description:
+        "Strong understanding of TCP/IP, DNS, HTTP/HTTPS, routing, and packet flow. Able to analyze and troubleshoot real-world network behavior.",
+    },
+    {
+      title: "Linux / Kali",
+      description:
+        "Experienced with Linux environments, especially Kali Linux, for penetration testing, tool usage, and system-level operations.",
+    },
+  ];
 
   if (showIntro) {
     return <CyberIntro onFinish={() => setShowIntro(false)} />;
@@ -48,20 +104,13 @@ export default function Cyber() {
           </motion.div>
 
           {/* Visual */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="relative"
-          >
+          <div className="relative flex items-center justify-center">
             <div className="absolute w-[350px] h-[350px] bg-green-500/10 blur-[100px] rounded-full"></div>
 
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
-              className="w-[260px] md:w-[320px] h-[260px] md:h-[320px] bg-gradient-to-br from-green-900 to-black rounded-full"
-            />
-          </motion.div>
+            <div className="relative z-10  rounded-[50%] p-4">
+              <Donut />
+            </div>
+          </div>
         </section>
 
         {/* SKILLS / TOOLS */}
@@ -74,24 +123,33 @@ export default function Cyber() {
           <h2 className="text-3xl font-semibold mb-10">Tools & Expertise</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              "Nmap",
-              "Wireshark",
-              "Metasploit",
-              "BeEF",
-              "Ng Suite",
-              "Custom Python Tools",
-            ].map((tool) => (
-              <div
-                key={tool}
-                className="relative group rounded-2xl p-[1px] bg-gradient-to-br from-green-500/40 to-transparent"
-              >
-                <div className="bg-[#111827] rounded-2xl p-6 relative overflow-hidden">
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-green-500/10 blur-2xl"></div>
+            {tools.map((tool) => (
+              <div key={tool.title} className="relative group cursor-pointer">
+                {/* CARD */}
+                <div className="relative rounded-2xl p-[1px] bg-gradient-to-br from-green-500/40 to-transparent">
+                  <div className="bg-[#111827] rounded-2xl p-6 relative overflow-hidden">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-green-500/10 blur-2xl"></div>
 
-                  <h3 className="text-lg font-semibold relative z-10">
-                    {tool}
-                  </h3>
+                    <h3 className="text-lg font-semibold relative z-10">
+                      {tool.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* HOVER MODAL */}
+                <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-4 w-64 opacity-1 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300">
+                  <div className="bg-black border border-green-500/30 rounded-xl p-4 shadow-xl relative">
+                    {/* small arrow */}
+                    <div className="absolute left-1/2 -translate-x-1/2 top-full w-3 h-3 bg-black rotate-45 border-r border-b border-green-500/30"></div>
+
+                    <h4 className="text-green-400 font-semibold text-sm">
+                      {tool.title}
+                    </h4>
+
+                    <p className="text-green-300/80 text-xs mt-2 leading-relaxed ">
+                      {tool.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -114,6 +172,7 @@ export default function Cyber() {
           </p>
         </motion.section>
       </div>
+      <ToolModal tool={activeTool} onClose={() => setActiveTool(null)} />
     </div>
   );
 }

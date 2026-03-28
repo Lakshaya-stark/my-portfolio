@@ -1,95 +1,89 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import Sharingan from "../components/Sharingan";
-
-const projects = [
-  {
-    name: "Portfolio Website",
-    desc: "Modern React + Tailwind portfolio",
-    link: "https://github.com/yourrepo1",
-  },
-  {
-    name: "Resume Screener",
-    desc: "AI-based resume filtering system",
-    link: "https://github.com/yourrepo2",
-  },
-  {
-    name: "Real-time Chat App",
-    desc: "WebSocket based messaging system",
-    link: "https://github.com/yourrepo3",
-  },
-];
+import { useNavigate } from "react-router-dom";
+import HUDCore from "../components/HUDCore";
+import HUDPanel from "../components/HUDPanel";
+import HUDLines from "../components/HUDLines";
 
 export default function Web() {
+  const navigate = useNavigate();
+  const [active, setActive] = useState(null);
+
+  const handleClick = (route) => {
+    if (active) return; // prevent spam clicks
+
+    setActive(route);
+
+    setTimeout(() => {
+      navigate(route);
+    }, 500);
+  };
+
   return (
-    <div className="min-h-screen bg-black text-red-400 relative overflow-hidden">
-      {/* BACKGROUND SMOKE / AURA */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute w-[500px] h-[500px] bg-red-500/10 blur-[120px] top-0 right-0"></div>
-        <div className="absolute w-[400px] h-[400px] bg-red-900/10 blur-[100px] bottom-0 left-0"></div>
-      </div>
+    <div className="h-screen bg-black text-cyan-300 flex overflow-hidden">
+      {/* SIDEBAR SPACE */}
+      <div className="w-64 hidden md:block"></div>
 
-      {/* OPTIONAL SUBTLE FLICKER */}
-      <div className="absolute inset-0 opacity-10 animate-[flicker_0.2s_infinite] pointer-events-none"></div>
+      {/* MAIN */}
+      <div className="flex-1 flex items-center justify-center">
+        {/* WRAPPER */}
+        <div className="relative w-full max-w-[1200px] h-[500px] flex items-center justify-center">
+          {/* LINES */}
+          <HUDLines />
 
-      <div className="relative z-10 flex">
-        {/* SIDEBAR SPACE */}
-        <div className="w-64 hidden md:block"></div>
-
-        {/* MAIN CONTENT */}
-        <div className="flex-1 px-10 py-16">
-          {/* HERO */}
-          <div className="flex justify-between items-start">
-            {/* LEFT TEXT */}
-            <div className="max-w-xl">
-              <h1 className="text-5xl font-bold mb-6 tracking-wide">
-                Web Development
-              </h1>
-
-              <p className="text-red-300/80 leading-relaxed">
-                Crafting modern web applications with performance, scalability,
-                and clean architecture in mind. Focused on building intuitive
-                user experiences with strong backend integration.
-              </p>
+          {/* GRID */}
+          <div className="grid grid-cols-3 w-full items-center">
+            {/* LEFT */}
+            <div className="flex flex-col items-end space-y-8 pr-12">
+              <HUDPanel
+                title="Projects"
+                desc="Frontend builds"
+                onClick={() => handleClick("/projects")}
+              />
+              <HUDPanel
+                title="Skills"
+                desc="Tech stack"
+                onClick={() => handleClick("/skills")}
+              />
             </div>
 
-            {/* RIGHT AVATAR */}
-            <div className="relative">
-              <Sharingan />
-            </div>
-          </div>
-
-          {/* PROJECTS */}
-          <div className="mt-32 space-y-20">
-            {projects.map((project, index) => (
+            {/* CENTER */}
+            <div className="flex justify-center">
               <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 200 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                viewport={{ once: true }}
-                className="flex justify-end"
+                animate={{
+                  scale: active ? 1.15 : 1,
+                  opacity: active ? 0.7 : 1,
+                }}
+                transition={{ duration: 0.3 }}
               >
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative w-[500px] bg-[#0a0a0a] border border-red-500/30 rounded-xl p-6 hover:border-red-500 transition duration-300 hover:scale-[1.02]"
-                >
-                  {/* glow */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-red-500/10 blur-2xl transition"></div>
-
-                  {/* content */}
-                  <h3 className="text-xl font-semibold mb-2 relative z-10">
-                    {project.name}
-                  </h3>
-
-                  <p className="text-red-300/70 text-sm relative z-10">
-                    {project.desc}
-                  </p>
-                </a>
+                <HUDCore />
               </motion.div>
-            ))}
+            </div>
+
+            {/* RIGHT */}
+            <div className="flex flex-col items-start space-y-8 pl-12">
+              <HUDPanel
+                title="Experience"
+                desc="Work & learning"
+                onClick={() => handleClick("/experience")}
+              />
+              <HUDPanel
+                title="Contact"
+                desc="Reach out"
+                onClick={() => handleClick("/contact")}
+              />
+            </div>
           </div>
+
+          {/* SAFE EXPANSION EFFECT */}
+          {active && (
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 6, opacity: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="absolute w-[200px] h-[200px] bg-cyan-400/10 rounded-full blur-2xl"
+            />
+          )}
         </div>
       </div>
     </div>

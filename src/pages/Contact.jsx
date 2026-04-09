@@ -74,8 +74,8 @@ export default function Contact() {
 
           {/* FOOTER */}
           <div className="mt-10 text-sm text-[#e8e6e3]/50">
-            <p>Email: yourmail@example.com</p>
-            <p>GitHub: github.com/yourprofile</p>
+            <p>Email: starkLak2104@proton.me</p>
+            <p>GitHub: github.com/lak-stark</p>
           </div>
         </div>
       </div>

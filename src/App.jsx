@@ -6,6 +6,7 @@ import Web from "./pages/Web";
 import Cyber from "./pages/Cyber";
 import Systems from "./pages/Systems";
 import AI from "./pages/AI";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/cybersecurity" element={<Cyber />} />
         <Route path="/systems" element={<Systems />} />
         <Route path="/ai" element={<AI />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </MainLayout>
   );

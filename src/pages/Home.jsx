@@ -5,6 +5,7 @@ import { themes } from "../data/theme";
 export default function Home() {
   const theme = themes.home;
   const navigate = useNavigate();
+
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
@@ -31,11 +32,17 @@ export default function Home() {
               { label: "About", id: "about" },
               { label: "Projects", id: "projects" },
               { label: "Skills", id: "domains" },
-              { label: "Contact", id: "domains" }, // temp
+              { label: "Contact", route: "/contact" },
             ].map((item) => (
               <button
                 key={item.label}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => {
+                  if (item.route) {
+                    navigate(item.route);
+                  } else {
+                    scrollToSection(item.id);
+                  }
+                }}
                 className="relative group"
               >
                 <span className="group-hover:text-[#d4af37] transition">
@@ -49,6 +56,7 @@ export default function Home() {
             ))}
           </div>
         </nav>
+
         {/* HERO */}
         <section
           id="home"
@@ -109,6 +117,7 @@ export default function Home() {
             transition={{ duration: 4, repeat: Infinity }}
           />
         </section>
+
         {/* ABOUT */}
         <motion.section
           id="about"
@@ -121,12 +130,11 @@ export default function Home() {
 
           <p className="text-zinc-400 max-w-3xl leading-relaxed">
             I am a multidisciplinary developer working across web technologies,
-            embedded systems, cybersecurity, and AI. I build systems that
-            combine performance, scalability, and security.
+            embedded systems, cybersecurity, and AI.
           </p>
         </motion.section>
-        {/* PROJECTS */}
 
+        {/* PROJECTS */}
         <motion.section
           id="projects"
           initial={{ opacity: 0, y: 40 }}
@@ -137,56 +145,14 @@ export default function Home() {
           <h2 className="text-3xl font-semibold mb-12">Featured Projects</h2>
 
           <div className="grid md:grid-cols-2 gap-10">
-            {/* PROJECT 1 */}
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="relative group rounded-2xl p-[1px] bg-gradient-to-br from-[#d4af37]/40 to-transparent"
-            >
-              <div className="bg-[#18181b] rounded-2xl p-6 h-full relative overflow-hidden">
-                {/* glow effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[#d4af37]/10 blur-2xl"></div>
-
-                <h3 className="text-xl font-semibold relative z-10">
-                  Helmet Detection System
-                </h3>
-
-                <p className="text-zinc-400 mt-3 relative z-10">
-                  Real-time YOLO-based system to detect helmet compliance and
-                  trigger alerts.
-                </p>
-
-                <div className="mt-6 text-sm text-[#d4af37] relative z-10">
-                  YOLO • OpenCV • Python • Docker
-                </div>
-              </div>
-            </motion.div>
-
-            {/* PROJECT 2 */}
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="relative group rounded-2xl p-[1px] bg-gradient-to-br from-[#d4af37]/40 to-transparent"
-            >
-              <div className="bg-[#18181b] rounded-2xl p-6 h-full relative overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[#d4af37]/10 blur-2xl"></div>
-
-                <h3 className="text-xl font-semibold relative z-10">
-                  Resume Screener
-                </h3>
-
-                <p className="text-zinc-400 mt-3 relative z-10">
-                  AI-powered system to shortlist candidates based on job
-                  requirements.
-                </p>
-
-                <div className="mt-6 text-sm text-[#d4af37] relative z-10">
-                  React • Node • AI • NLP
-                </div>
-              </div>
-            </motion.div>
+            <div className="bg-[#18181b] p-6 rounded-2xl">
+              Helmet Detection System
+            </div>
+            <div className="bg-[#18181b] p-6 rounded-2xl">Resume Screener</div>
           </div>
         </motion.section>
 
-        {/* Domain */}
+        {/* DOMAINS */}
         <motion.section
           id="domains"
           initial={{ opacity: 0, y: 40 }}
@@ -197,72 +163,23 @@ export default function Home() {
           <h2 className="text-3xl font-semibold mb-12">Explore My Work</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* WEB */}
-            <div
-              onClick={() => navigate("/web")}
-              className="group cursor-pointer relative rounded-2xl p-[1px] bg-gradient-to-br from-cyan-400/40 to-transparent"
-            >
-              <div className="bg-[#18181b] rounded-2xl p-6 h-full relative overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-cyan-400/10 blur-2xl"></div>
-
-                <h3 className="text-lg font-semibold relative z-10">
-                  Web Development
-                </h3>
-
-                <p className="text-zinc-400 mt-2 text-sm relative z-10">
-                  React, Tailwind, full-stack apps
-                </p>
-              </div>
+            <div onClick={() => navigate("/web")} className="cursor-pointer">
+              Web
             </div>
-
-            {/* CYBER */}
             <div
               onClick={() => navigate("/cybersecurity")}
-              className="group cursor-pointer relative rounded-2xl p-[1px] bg-gradient-to-br from-green-500/40 to-transparent"
+              className="cursor-pointer"
             >
-              <div className="bg-[#18181b] rounded-2xl p-6 h-full relative overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-green-500/10 blur-2xl"></div>
-
-                <h3 className="text-lg font-semibold relative z-10">
-                  Cybersecurity
-                </h3>
-
-                <p className="text-zinc-400 mt-2 text-sm relative z-10">
-                  Networking, tools, exploitation
-                </p>
-              </div>
+              Cyber
             </div>
-
-            {/* SYSTEMS */}
             <div
               onClick={() => navigate("/systems")}
-              className="group cursor-pointer relative rounded-2xl p-[1px] bg-gradient-to-br from-sky-400/40 to-green-400/40"
+              className="cursor-pointer"
             >
-              <div className="bg-[#18181b] rounded-2xl p-6 h-full relative overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-sky-400/10 blur-2xl"></div>
-
-                <h3 className="text-lg font-semibold relative z-10">Systems</h3>
-
-                <p className="text-zinc-400 mt-2 text-sm relative z-10">
-                  Arduino, Raspberry Pi, low-level
-                </p>
-              </div>
+              Systems
             </div>
-
-            {/* AI */}
-            <div
-              onClick={() => navigate("/ai")}
-              className="group cursor-pointer relative rounded-2xl p-[1px] bg-gradient-to-br from-violet-400/40 to-transparent"
-            >
-              <div className="bg-[#18181b] rounded-2xl p-6 h-full relative overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-violet-400/10 blur-2xl"></div>
-
-                <h3 className="text-lg font-semibold relative z-10">AI / CV</h3>
-
-                <p className="text-zinc-400 mt-2 text-sm relative z-10">
-                  YOLO, OpenCV, detection systems
-                </p>
-              </div>
+            <div onClick={() => navigate("/ai")} className="cursor-pointer">
+              AI
             </div>
           </div>
         </motion.section>

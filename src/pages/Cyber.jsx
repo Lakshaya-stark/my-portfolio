@@ -82,11 +82,9 @@ export default function Cyber() {
     <div
       className={`${theme.bg} ${theme.text} min-h-screen relative overflow-hidden`}
     >
-      {/* Background Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(34,197,94,0.08),transparent_40%),radial-gradient(circle_at_80%_70%,rgba(16,185,129,0.05),transparent_40%)]"></div>
 
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 py-20 space-y-32">
-        {/* HERO */}
         <section className="flex flex-col md:flex-row items-center justify-between gap-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -108,7 +106,6 @@ export default function Cyber() {
             />
           </motion.div>
 
-          {/* Visual */}
           <div className="relative flex items-center justify-center">
             <div className="absolute w-[350px] h-[350px] bg-green-500/10 blur-[100px] rounded-full"></div>
 
@@ -118,7 +115,6 @@ export default function Cyber() {
           </div>
         </section>
 
-        {/* SKILLS / TOOLS */}
         <motion.section
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -130,7 +126,6 @@ export default function Cyber() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {tools.map((tool) => (
               <div key={tool.title} className="relative group cursor-pointer">
-                {/* CARD */}
                 <div className="relative rounded-2xl p-[1px] bg-gradient-to-br from-green-500/40 to-transparent">
                   <div className="bg-[#111827] rounded-2xl p-6 relative overflow-hidden">
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-green-500/10 blur-2xl"></div>
@@ -141,10 +136,8 @@ export default function Cyber() {
                   </div>
                 </div>
 
-                {/* HOVER MODAL */}
                 <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-4 w-64 opacity-1 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300">
                   <div className="bg-black border border-green-500/30 rounded-xl p-4 shadow-xl relative">
-                    {/* small arrow */}
                     <div className="absolute left-1/2 -translate-x-1/2 top-full w-3 h-3 bg-black rotate-45 border-r border-b border-green-500/30"></div>
 
                     <h4 className="text-green-400 font-semibold text-sm">
@@ -161,7 +154,6 @@ export default function Cyber() {
           </div>
         </motion.section>
 
-        {/* DESCRIPTION */}
         <motion.section
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

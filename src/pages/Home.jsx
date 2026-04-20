@@ -16,11 +16,9 @@ export default function Home() {
     <div
       className={`${theme.bg} ${theme.text} min-h-screen relative overflow-hidden`}
     >
-      {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(212,175,55,0.08),transparent_40%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.04),transparent_40%)]"></div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-20 space-y-32">
-        {/* NAVBAR */}
         <nav className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-[#d4af37] rounded-full"></div>
@@ -57,7 +55,6 @@ export default function Home() {
           </div>
         </nav>
 
-        {/* HERO */}
         <section
           id="home"
           className="flex flex-col md:flex-row items-center justify-between gap-16"
@@ -84,10 +81,10 @@ export default function Home() {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0 },
               }}
-              className="text-4xl md:text-6xl font-bold"
+              className="text-2xl md:text-4xl font-bold"
             >
-              Now it's new <br />
-              <span className={theme.accent}>Stark</span>
+              Welcome to My Portfolio It's <br />
+              <span className={theme.accent}>Lakshaya</span>
             </motion.h1>
 
             <motion.p
@@ -118,7 +115,6 @@ export default function Home() {
           />
         </section>
 
-        {/* ABOUT */}
         <motion.section
           id="about"
           initial={{ opacity: 0, y: 40 }}
@@ -134,7 +130,6 @@ export default function Home() {
           </p>
         </motion.section>
 
-        {/* PROJECTS */}
         <motion.section
           id="projects"
           initial={{ opacity: 0, y: 40 }}
@@ -152,7 +147,6 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* DOMAINS */}
         <motion.section
           id="domains"
           initial={{ opacity: 0, y: 40 }}

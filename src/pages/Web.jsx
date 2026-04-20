@@ -16,16 +16,13 @@ export default function Web() {
 
   return (
     <div className="h-screen bg-black text-cyan-300 flex overflow-hidden">
-      {/* SIDEBAR */}
       <div className="w-64 hidden md:block"></div>
 
-      {/* MAIN */}
       <div className="flex-1 flex items-center justify-center">
         <div className="relative w-full max-w-[1200px] h-[500px] flex items-center justify-center">
           <HUDLines />
 
           <div className="grid grid-cols-3 w-full items-center">
-            {/* LEFT */}
             <div className="flex flex-col items-end space-y-8 pr-12">
               <HUDPanel
                 title="Projects"
@@ -39,9 +36,7 @@ export default function Web() {
               />
             </div>
 
-            {/* CENTER */}
             <div className="flex items-center justify-center h-[260px] relative">
-              {/* CORE */}
               <motion.div
                 animate={{
                   opacity: active ? 0 : 1,
@@ -53,7 +48,6 @@ export default function Web() {
                 <HUDCore active={active} />
               </motion.div>
 
-              {/* CONTENT */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{
@@ -67,7 +61,6 @@ export default function Web() {
               </motion.div>
             </div>
 
-            {/* RIGHT */}
             <div className="flex flex-col items-start space-y-8 pl-12">
               <HUDPanel
                 title="Experience"
